@@ -34,6 +34,32 @@
    npm install nodemon --save-dev
    npm install ts-node --save-dev
    ```
-8. Install eslint
+9. Folder Structure
+   - `/docker` => Folder for Dockerfiles
+   - `/logs` => Folder for log files
+   - `/nginx` => Folder for Nginx config files
+   - `/public` => Folder for static files
+   - `/script` => Folder for shell scripts or migration files
+   - `/src` => Folder for source code
+     - `/config` => Configuration files
+     - `/constant` => Constant values
+     - `/controller` => Controller files
+     - `/middleware` => Middleware files
+     - `/model` => Model files
+     - `/router` => Router files
+     - `/service` => Service files
+     - `/types` => Type definitions
+     - `/utils` => Utility functions
+     - `/view` (Optional) => View files (EJS, Pug, etc.)
+     - `app.ts` => Express app configuration
+     - `server.ts` => Server configuration
+   - `/test` => Folder for test files
+   - `.env.development` => Development environment variables
+   - `.env.production` => Production environment variables
+   - `.env.sample` => Environment variables sample file
+   - `.gitignore` => Git ignore file
+   - `ecosystem.config.js` => PM2 configuration file
+   - `nodemon.json` => Nodemon configuration file
+10. Install eslint
    `npm install eslint --save-dev`
-9. Initialize eslint
+11. Initialize eslint
