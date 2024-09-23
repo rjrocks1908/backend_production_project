@@ -64,8 +64,73 @@
     ```
     npm install @commitlint/cli @commitlint/config-conventional -D
     ```
-11. Install eslint
+11. Configure Commit Lint. You can change the rules as you like.
+    - Create `.husky/commit-msg` file
+    - Add following code
+      ```
+      npx --no-install commitlint --edit "$1"
+      ```
+    - Create `commitlint.config.js` file
+    - Add following code
+      ```
+      module.exports = {
+        extends: ["@commitlint/cli", "@commitlint/config-conventional"],
+        rules: {
+          "type-enum": [
+            2,
+            "always",
+            [
+              "feat",
+              "fix",
+              "docs",
+              "style",
+              "refactor",
+              "perf",
+              "test",
+              "build",
+              "ci",
+              "chore",
+              "revert",
+            ],
+          ],
+          "subject-case": [2, "always", "sentence-case"],
+        },
+      };      
+      ```
+12. Install typescript-eslint
     ```
-    npm install eslint --save-dev
+    npm install --save-dev eslint @eslint/js @types/eslint__js typescript-eslint
     ```
-12. Initialize eslint
+13. Create `eslint.config.mjs` file. You can change the rules as you like.
+    - Add following code
+      ```
+      // @ts-check
+
+      import eslint from "@eslint/js";
+      import tseslint from "typescript-eslint";
+
+      export default tseslint.config({
+        languageOptions: {
+          parserOptions: {
+            project: true,
+            tsconfigRootDir: import.meta.dirname,
+          },
+        },
+        files: ["**/*.ts"],
+        extends: [
+          eslint.configs.recommended,
+          ...tseslint.configs.recommendedTypeChecked,
+        ],
+        rules: {
+          "no-console": "error",
+          quotes: ["error", { allowTemplateLiterals: true }],
+        },
+      });
+
+      ```
+14. Install Prettier
+    ```
+    npm install prettier --save-dev
+    ```
+15. Create `.prettierrc` file and your preferred settings
+
