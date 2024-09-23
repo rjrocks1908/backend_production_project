@@ -60,6 +60,12 @@
    - `.gitignore` => Git ignore file
    - `ecosystem.config.js` => PM2 configuration file
    - `nodemon.json` => Nodemon configuration file
-10. Install eslint
-   `npm install eslint --save-dev`
-11. Initialize eslint
+10. Install Commit Lint
+    ```
+    npm install @commitlint/cli @commitlint/config-conventional -D
+    ```
+11. Install eslint
+    ```
+    npm install eslint --save-dev
+    ```
+12. Initialize eslint
