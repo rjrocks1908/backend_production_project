@@ -186,5 +186,15 @@
      }
    }
    ```
-   
+
+# Helmet JS Setup
+## Steps
+1. Install helmet
+   ```
+   npm i helmet
+   ```
+2. Use helmet in app
+   ```
+   app.use(helmet())
+   ```
 
