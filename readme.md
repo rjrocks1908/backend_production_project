@@ -1,4 +1,5 @@
-# Steps
+# Project Setup
+## Steps
 1. Initialize the project with npm
    ```
    npm init
@@ -133,4 +134,38 @@
     npm install prettier --save-dev
     ```
 15. Create `.prettierrc` file and your preferred settings
+16. Install dotenv-flow
+    ```
+    npm install dotenv-flow
+    ```
+17. Install cross-env
+    ```
+    npm install cross-env
+    ```
+18. In `package.json`, add following scripts
+    ```
+    "dev": "cross-env NODE_ENV=development nodemon src/server.ts",
+    "start": "cross-env NODE_ENV=production node dist/server.js",
+    ```
+
+# Express JS Setup
+## Steps
+1. Install express
+   ```
+   npm install express
+   ```
+2. Install winston: This package is used for logging
+   ```
+   npm i winston
+   ```
+3. Install source-map-support: This package is used to map the source code
+   ```
+   npm i source-map-support
+   ```
+4. Install @types/source-map-support
+   ```
+   npm i @types/source-map-support
+   ```
+5. Enable following in tsconfig.json
+   - `"sourceMap": true,`
 
