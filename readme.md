@@ -169,3 +169,22 @@
 5. Enable following in tsconfig.json
    - `"sourceMap": true,`
 
+# Making Terminal Colorful
+## Steps
+1. Install colorette
+   ```
+   npm i colorette
+   ```
+2. Parse the log message through this function
+   ```
+   const colorizeLevel = (level: string) => {
+     switch (level) {
+       case 'ERROR': return red(level)
+       case 'WARN': return yellow(level)
+       case 'INFO': return green(level)
+       default: return level
+     }
+   }
+   ```
+   
+

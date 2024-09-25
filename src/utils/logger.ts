@@ -1,31 +1,45 @@
-import { createLogger, format, transports } from 'winston'
-import { ConsoleTransportInstance, FileTransportInstance } from 'winston/lib/winston/transports'
-import util from 'util'
-import { EApplicationEnvironment } from '../constant/application'
-import { config } from '../config/config'
+import { blue, green, magenta, red, yellow } from 'colorette'
 import path from 'path'
 import * as sourceMapSupport from 'source-map-support'
+import util from 'util'
+import { createLogger, format, transports } from 'winston'
+import { ConsoleTransportInstance, FileTransportInstance } from 'winston/lib/winston/transports'
+import { config } from '../config/config'
+import { EApplicationEnvironment } from '../constant/application'
 
 sourceMapSupport.install()
+
+const colorizeLevel = (level: string) => {
+  switch (level) {
+    case 'ERROR':
+      return red(level)
+    case 'WARN':
+      return yellow(level)
+    case 'INFO':
+      return blue(level)
+    default:
+      return level
+  }
+}
 
 const consoleLogFormat = format.printf((info) => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { timestamp, level, message, meta = {} } = info
 
-  const customLevel = level.toUpperCase()
+  const customLevel = colorizeLevel(level.toUpperCase())
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const customTimestamp = timestamp
+  const customTimestamp = green(timestamp as string)
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const customMessage = message
 
   const customMeta = util.inspect(meta, {
     showHidden: false,
-    depth: null
+    depth: null,
+    colors: true
   })
 
-  const customLog = `${customLevel} [${customTimestamp}] ${customMessage}\n${'META'} ${customMeta}`
+  const customLog = `${customLevel} [${customTimestamp}] ${customMessage}\n${magenta('META')} ${customMeta}`
 
   return customLog
 })
